@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import {ArrowRightCircle} from 'react-bootstrap-icons'
 import HeaderImg from '../assets/img/header-img.svg'
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
 
 const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
@@ -51,13 +53,27 @@ const Banner = () => {
         <Container>
             <Row className='align-item-center'>
                 <Col xs={12} md={6} xl={7}>
-                    <span className='tagline'>Welcome to my Portfolio</span>
-                    <h1>{"Hi I'm Moamin "}<span className='wrap'>{text}</span></h1>
-                    <p>jhwf jsdhfa kjasdfh skjfdhskajhfasjk kjash kasjh ksjdhfkwjg8qwyf qwegf qwhgfe kgf jkqwgfjk </p>
-                    <button onClick={()=> console.log('connect')}>Let's connect <ArrowRightCircle size={25}/> </button>
+                    <TrackVisibility>
+                    {
+                        ({isVisible})=>
+                        <div className={isVisible ? 'animate__animated animate__fadiIn' : ''}>
+                            <span className='tagline'>Welcome to my Portfolio</span>
+                            <h1>{"Hi I'm Moamin "}<span className='wrap'>{text}</span></h1>
+                            <p>jhwf jsdhfa kjasdfh skjfdhskajhfasjk kjash kasjh ksjdhfkwjg8qwyf qwegf qwhgfe kgf jkqwgfjk </p>
+                            <button onClick={()=> console.log('connect')}>Let's connect <ArrowRightCircle size={25}/> </button>
+                        </div>
+                    }
+                    </TrackVisibility>
                 </Col>
                 <Col xs={12} md={6} xl={5}>
-                    <img src={HeaderImg} alt='Header Img' />
+                    <TrackVisibility>
+                    {
+                        ({isVisible}) => 
+                        <div className={isVisible ? 'animate__animated animate__zoomIn': ''}>
+                            <img src={HeaderImg} alt='Header Img' />
+                        </div>
+                    }
+                    </TrackVisibility>
                 </Col>
             </Row>
         </Container>
